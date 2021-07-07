@@ -115,6 +115,16 @@
       slider.oninput = priceTeller;
       subscriptionType.onclick = priceTeller;
 
+      //Responsive Code
+      this.onresize= function (){
+      if(document.body.clientWidth){
+        if(document.body.clientWidth<=768){
+          document.querySelector('label ~ p > span').innerHTML = '-25%';
+        }else{
+          document.querySelector('label ~ p > span').innerHTML = '25% discount';
+        }
+      }
+    }
     </script>
   </body>
 </html>

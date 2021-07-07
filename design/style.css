@@ -1,0 +1,306 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@600;800&display=swap');
+
+
+:root{
+
+    /* Primary Colors */
+
+    --soft-cyan: hsl(174, 77%, 80%);        /* Full Slider Bar  */
+    --strong-cyan:hsl(174, 86%, 45%);       /* Slider Backround  */
+    --light-grayish-red:hsl(14, 92%, 95%);  /* Discount Background  */
+    --light-red:hsl(15, 100%, 70%);         /* Discount Text  */
+    --pale-blue: hsl(226, 100%, 87%);       /* CTA Text  */
+
+    /* Neutral Colors */
+
+    --white:hsl(0, 0%, 100%);                /* Pricing Component Background  */
+    --very-pale-blue: hsl(230, 100%, 99%);  /* Main Background  */
+    --light-grayish-blue-slider-bar:hsl(224, 65%, 95%);     /* Empty Slider Bar  */
+    --light-grayish-blue-toggle: hsl(223, 50%, 87%);        /* Toggle Background  */
+    --grayish-blue: hsl(225, 20%, 60%);     /* Text  */
+    --dark-desaturated-blue:hsl(227, 35%, 25%);     /* Text & CTA Background  */
+
+    /* Typography */
+    --text-light:600;
+    --text-bold:800;
+    --text-size: 15px;  /* Introductory Paragraph  */
+    --manrope: 'Manrope', sans-serif;
+}
+
+.flex{
+    display: flex !important;
+}
+
+html,body{
+    font-family: var(--manrope);
+    min-height: 100%;
+    background-color: var(--very-pale-blue);
+    background-image: url('../images/bg-pattern.svg');
+    background-size: 100% 50%;
+    background-repeat: no-repeat;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+
+body > h1,body > h4{
+    text-align: center;
+}
+
+body>h1.main-heading{
+    color: var(--dark-desaturated-blue);
+    margin-top: 5%;
+    position: relative;
+}
+
+body>img{
+    position: absolute;
+    left: 50%;
+    top: 5%;
+    transform: translateX(-50%);
+}
+
+body>h4.sub-heading{
+    color: var(--grayish-blue);
+    margin-bottom: 3em;
+}
+
+*{
+    box-sizing: border-box;
+}
+
+
+
+.price-card{
+    background-color: var(--white);
+    width: 50%;
+    margin: 0 auto;
+    border-radius: 1.5em;
+    box-shadow: rgb(224 224 224) 4px 2px 10px 2px, rgb(224 224 224) -4px 2px 10px 2px;
+    padding: 3.5em 3.5em 2em;
+    position: relative;
+}
+
+hr{
+    position: absolute;
+    width: 100%;
+    left: 0;
+    color: var(--pale-blue);
+}
+
+.price-card .price-plan{
+    justify-content: space-between;
+    margin-bottom: 2.5em;
+}
+
+.price-card .price-plan *{
+    margin: 0;
+}
+
+.price-card .price-plan p{
+    text-transform: uppercase;
+    font-size: 20px;
+    color: var(--grayish-blue);
+    letter-spacing: 2px;
+    word-spacing: 4px;
+    display: flex;
+    align-items: center;
+}
+
+.price-card .price-plan h2{
+    color: var(--dark-desaturated-blue);
+    font-size: 48px;
+    font-weight: var(--text-bold);
+}
+
+.price-card .price-plan span{
+    color: var(--grayish-blue);
+    display: flex;
+    align-items: center;
+    margin-left: .6em;
+}
+
+
+
+.price-card .price-slider .duration{
+    justify-content: flex-end;
+    color: var(--grayish-blue);
+    font-size: 17px;
+    align-items: center;
+    padding-bottom: 3em;
+    margin-top: 2em;
+}
+
+.price-card .price-slider .duration p{
+    margin: 0;
+}
+
+.price-card .price-slider .duration label.switch{
+    margin: 0 1.4em;
+}
+
+label ~ p > span{
+    background-color: var(--light-grayish-red);
+    color: var(--light-red);
+    padding: 4px 10px;
+    border-radius: 15px;
+    font-size: 12px;
+    margin: 0 1em;
+}
+
+.benifit{
+    padding-top: 2.2em;
+}
+
+.benifits{
+   flex-basis: 50%;
+   color: var(--grayish-blue);
+}
+
+
+
+.start-trial{
+    align-items: center;
+    justify-content: center;
+    flex-basis: 50%;
+}
+
+.start-trial .btn{
+    outline: none;
+    border: none;
+    background-color: var(--dark-desaturated-blue);
+    color: var(--pale-blue);
+    font-size: 16px;
+    padding: 1em 4em;
+    border-radius: 2em;
+    cursor: pointer;
+}
+
+/* Css for Range slider starts here. https://youtu.be/Ow0QjqmaRtQ */
+
+.slider-range{
+    position: relative;
+}
+
+.slider-range #price{
+    -webkit-appearance: none;
+    width: 100%;
+    cursor: pointer;
+    height: 17px;
+    outline: none;
+    border-radius: 3px;
+    margin: 0;
+}
+
+.slider-range #price::-webkit-slider-thumb{
+    -webkit-appearance: none !important;
+    opacity: 0;
+    width: 48px;
+    height: 48px;
+    z-index: 3;
+    position: relative;
+}
+
+#selector {
+    height: 104px;
+    width: 48px;
+    position: absolute;
+    bottom: -20px;
+    left: 60%;
+    transform: translateX(-50%);
+    z-index: 2;
+}
+
+.selectBtn{
+    height: 42px;
+    width: 42px;
+    background-image: url(../images/icon-slider.svg);
+    background-repeat: no-repeat;
+    /* background-size: cover; */
+    background-position: center;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 8px;
+    background-color: var(--strong-cyan);
+    box-shadow: 0px 6px 10px 7px var(--soft-cyan);
+}
+
+#progress-bar{
+    width: 60%;
+    height: 7px;
+    background:var(--soft-cyan);
+    border-radius: 3px;
+    position: absolute;
+    top:50%;
+    left: 0;
+}
+
+/* Css for Range slider ends here. */
+
+
+
+
+/* Toggle button code start, this has been directly copy pasted from https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_switch*/
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+  }
+  
+  .switch input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  input:checked + .slider {
+    background-color: #2196F3;
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }
+
+  /* Toggle button code End */

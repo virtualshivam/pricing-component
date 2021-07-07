@@ -1,39 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
 
-  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-  
-  <title>Frontend Mentor | Interactive pricing component</title>
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
 
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
-</head>
-<body>
+    <title>Frontend Mentor | Interactive pricing component</title>
+    <link rel="stylesheet" href="design/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+    <style>
+      .attribution {
+        font-size: 11px;
+        text-align: center;
+      }
+      .attribution a {
+        color: hsl(228, 45%, 44%);
+      }
+    </style>
+  </head>
+  <body>
+    <h1 class="main-heading">Simple, traffic-based pricing</h1>
+    <img src="images/pattern-circles.svg" alt="circles">
+    <h4 class="sub-heading">
+      Sign-up for our 30-day trial. No credit card required.
+    </h4>
 
-  Simple, traffic-based pricing
-  Sign-up for our 30-day trial. No credit card required. 
+    <div class="price-card">
+      <div class="price-plan flex">
+        <p id="only-for-million-views"><span id="page-no">100K</span>&nbsp;Pageviews</p>
+        <div class="flex">
+          <h2 id="price-per-month">$16.00</h2>
+          <span id="payment-cycle">/ month</span>
+        </div>
+      </div>
+      <div class="price-slider">
+        <div class="slider-range">
+          <input type="range" id="price" name="price" min="0" max="5" />
+          <div id="selector">
+            <div class="selectBtn"></div>
+          </div>
+          <div id="progress-bar">
+            
+          </div>
+        </div>
+        <div class="duration flex">
+          <p>Monthly Billing</p>
+          <label class="switch">
+            <input type="checkbox" id="check-subscription" />
+            <span class="slider round"></span>
+          </label>
+          <p>Yearly Billing <span>25% discount</span></p>
+        </div>
+      </div>
+      <hr />
+      <div class="benifit flex">
+        <div class="benifits">
+          <p><i class="fas fa-check" style="color: #10d8c4;font-size: 11px;"></i> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Unlimited websites</p>
+          <p><i class="fas fa-check" style="color: #10d8c4;font-size: 11px;"></i> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;100% data ownership</p>
+          <p><i class="fas fa-check" style="color: #10d8c4;font-size: 11px;"></i> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Email reports</p>
+        </div>
+        <div class="start-trial flex">
+          <button class="btn">Start my trial</button>
+        </div>
+      </div>
+    </div>
 
-  Pageviews
-  $ /month
+    <div class="attribution">
+      Challenge by
+      <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
+        >Frontend Mentor</a
+      >. Coded by <a href="#">Shivam Kumar Choudhary</a>.
+    </div>
+    <script>
+      const pagesNo = document.getElementById('page-no');
+      const pricePerMonth = document.getElementById('price-per-month');
+      const slider = document.getElementById('price');
+      const selector = document.getElementById('selector');
+      const progressBar = document.getElementById('progress-bar');
+      const subscriptionType = document.getElementById('check-subscription');
+      const paymentCycle = document.getElementById("payment-cycle");
 
-  Monthly Billing
-  Yearly Billing 25% discount
+      const priceCatalogue = [[10,8],[50,12],[100,16],[500,24],[1,36]];
 
-  Unlimited websites
-  100% data ownership
-  Email reports
+      function priceTeller (){
+        const state = subscriptionType.checked;
+        paymentCycle.innerHTML = state ? "/ year" : "/ month";
 
-  Start my trial
-  
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
-  </div>
-</body>
+        let sliderNumericValue = parseInt(slider.value);
+        sliderNumericValue = sliderNumericValue  || 1;
+
+        selector.style.left = sliderNumericValue * 20 + '%';
+        progressBar.style.width = sliderNumericValue * 20 + '%';
+
+        pricePerMonth.innerHTML = state ? `\$${priceCatalogue[sliderNumericValue-1][1]*12*0.75}.00` : `\$${priceCatalogue[sliderNumericValue-1][1]}.00`;
+
+        pagesNo.innerHTML = (sliderNumericValue == 5) ? `${priceCatalogue[sliderNumericValue-1][0]}M` : `${priceCatalogue[sliderNumericValue-1][0]}K`;
+
+      }
+
+      slider.oninput = priceTeller;
+      subscriptionType.onclick = priceTeller;
+
+    </script>
+  </body>
 </html>
